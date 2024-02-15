@@ -1,9 +1,10 @@
 import { createRoot } from 'react-dom/client'
-import { BrowserRouter } from 'react-router-dom'
-import { App } from './src/App'
+import { RouterProvider } from 'react-router-dom'
+import router from './src/routes/routes'
+import React from 'react'
 
 createRoot(document.getElementById('app')).render(
-    <BrowserRouter>
-        <App />
-    </BrowserRouter>
+    <React.StrictMode>
+        <RouterProvider router={router} />
+    </React.StrictMode>
 )
