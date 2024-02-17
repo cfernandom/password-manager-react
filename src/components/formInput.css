@@ -11,6 +11,19 @@ input{
     border: 1px solid gray;
 }
 
+.formInput label{
+    display: inline;
+}
+.show-password {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+.show-password label{
+    margin-right: 5px;
+    padding: 0;
+}
 
 label{
     font-size: 12px;

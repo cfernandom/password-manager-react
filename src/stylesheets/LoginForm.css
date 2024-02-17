@@ -1,0 +1,80 @@
+.formInput{
+    display: flex;
+    flex-direction: column;
+    width: 280px;
+}
+
+input{
+    padding: 7px;
+    margin: 10px 0px;
+    border-radius: 5px;
+    border: 1px solid #FFE86F;
+}
+
+.formInput label{
+    display: inline;
+}
+.show-password {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 150px;
+  }
+
+.show-password label{
+    margin-right: 5px;
+}
+
+label{
+    font-size: 12px;
+    color: #FFE86F;
+}
+
+span{
+    font-size: 12px;
+    padding: 3px;
+    color: red;
+    display: none;
+}
+
+input:invalid[focused="true"]{
+    border: 1px solid red;
+}
+
+input:invalid[focused="true"] ~ span{
+    display: block;
+}
+
+.secondary-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.link-forgot-password{
+    font-size: 12px;
+    color: #ACACAC;
+    margin-left: 5px;
+    transition: 0.3s;
+}
+
+.link-forgot-password:hover{
+    color:white;
+}
+
+.email-login, .password-login{
+    color:#FFE86F;
+    background-color: #12161b;
+}
+
+.password-checkbox{
+    appearance: none;
+    background-color: #12161b;
+    border: 1px solid #FFE86F;
+    border-radius: 10px;
+}
+
+.password-checkbox:checked{
+    background-color: #FFE86F;
+}

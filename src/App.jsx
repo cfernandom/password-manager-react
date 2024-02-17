@@ -3,10 +3,10 @@ import { Login } from "./pages/Login";
 
 export function App () {
     return (
-            <div className="App">
-                <Routes>
-                    <Route path="/" element={<Login />} />
-                </Routes>
-            </div>
+          <div className="App">
+              <Routes>
+                  <Route path="/" element={<Login />} />
+              </Routes>
+          </div>
     )
 }

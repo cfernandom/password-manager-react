@@ -4,14 +4,14 @@ import './formInput.css'
 
 const FormInput = (props) => {
     const [focused, setFocused] = useState(false)
-    const { label, errorMessage, onChange, id, ...inputProps } = props
+    const { label, showPassword, errorMessage, onChange, id, ...inputProps } = props
 
     const handleFocus = (e) => {
         setFocused(true)
     }
 
     return (
-        <div className='formInput'>
+        <div className = {showPassword ? 'show-password' : 'formInput'}>
             <label>{label}</label>
             <input
                 {...inputProps}
@@ -31,7 +31,8 @@ FormInput.propTypes = {
     label: PropTypes.string,
     errorMessage: PropTypes.string,
     onChange: PropTypes.func,
-    id: PropTypes.number
+    id: PropTypes.number,
+    showPassword: PropTypes.bool
 }
 
 export default FormInput

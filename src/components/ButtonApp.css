@@ -1,0 +1,30 @@
+.main{
+    width: 280px;
+    padding: 10px 0px;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    background-color: #FFE86F;
+    color: #12161b;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.main:hover{
+    opacity: 50%;
+}
+
+.secondary{
+    width: 280px;
+    padding: 10px 0px;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    color: #FFE86F;
+    background-color: #12161b;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.secondary:hover{
+    background-color: #30373F;
+}

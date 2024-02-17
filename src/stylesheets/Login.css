@@ -1,0 +1,46 @@
+*{
+    font-family: 'Inter',sans-serif;
+    font-weight:600;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #1E252E;
+    font-size: 14px;
+}
+
+h1{
+    font-family: 'Squada One',sans-serif;
+    font-weight: 500;
+    font-size: 70px;
+    margin-bottom: 40px;
+    color: #FFE86F;
+}
+
+html, body{
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.contenedor-login{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.app-login{
+    margin-bottom: 30px;
+}
+
+.sign-up-link{
+    color: #ACACAC;
+    align-self: flex-start;
+    margin-top: 10px;
+    transition: 0.3s;
+}
+
+.sign-up-link:hover{
+    color:white;
+}
