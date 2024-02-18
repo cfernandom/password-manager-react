@@ -1,0 +1,9 @@
+#category-selector{
+    background-color: #12161B;
+    color: #FFE86F;
+    border: 2px solid #FFE86F;
+    border-radius: 5px;
+    padding: 5px;
+    width: 60%;
+    border-width: 1px;
+}
