@@ -1,7 +1,7 @@
 import FormInput from '../../../components/FormInput'
 import '../../../stylesheets/LoginForm.css'
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import ButtonApp from '../../../components/ButtonApp'
 
 function LoginForm () {
     const [values, setValues] = useState({
@@ -57,6 +57,7 @@ function LoginForm () {
                         Forgot Password?
                     </Link>
                 </div>
+                <ButtonApp className='login-btn' text='Login' styleBtn={true}/>
             </form>
         </div>
     )
