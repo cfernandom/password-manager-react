@@ -6,7 +6,7 @@ const RegisterForm = () => {
     const [values, setValues] = useState({
         email: '',
         password: '',
-        confirmPassword: ''
+        passwordConfirmation: ''
     })
     const inputs = [
         {
@@ -31,7 +31,7 @@ const RegisterForm = () => {
         },
         {
             id: 5,
-            name: 'confirmPassword',
+            name: 'passwordConfirmation',
             type: 'password',
             placeholder: 'Confirm Password',
             errorMessage: 'Passwords don\'t match!',
