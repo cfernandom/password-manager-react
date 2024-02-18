@@ -1,5 +1,6 @@
 import CategorySelect from '../components/CategorySelect'
 import PasswordInfo from '../components/PasswordInfo'
+import UsrComment from '../components/UsrComment'
 import LoginForm from '../features/authentication/components/LoginForm'
 
 export function Profile () {
@@ -7,7 +8,11 @@ export function Profile () {
         <div>
             <LoginForm />
             <CategorySelect />
-            <PasswordInfo />
+            <PasswordInfo
+                passwordTitle='Facebook'
+                password='HOLAMUNDO'
+            />
+            <UsrComment />
         </div>
     )
 }
