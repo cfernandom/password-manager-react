@@ -1,0 +1,28 @@
+.container-create-edit{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+.container-create-edit h2{
+    font-family: 'Squada One',sans-serif;
+    font-size: 1.5em;
+    font-weight: 500;
+    color: #ACACAC;
+    margin-bottom: 20px;
+}
+.button-box-create-edit{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 10px 0;
+}
+.button-box-create-edit .secondary{
+    width: 50%;
+    font-size: 0.8em;
+    margin: 0;
+}
+.category-container{
+    margin-bottom: 10px;
+}

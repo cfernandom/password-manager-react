@@ -19,11 +19,11 @@ h1{
     color: #FFE86F;
 }
 
-html, body{
-    height: 100%;
+.main-container-login{
     justify-content: center;
     align-items: center;
     display: flex;
+    height: 100vh;
 }
 
 .contenedor-login{

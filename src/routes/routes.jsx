@@ -2,6 +2,7 @@ import { createBrowserRouter } from 'react-router-dom'
 import { Login } from '../pages/Login'
 import { Register } from '../pages/Register'
 import { Profile } from '../pages/Profile'
+import CreateEdit from '../pages/CreateEdit'
 
 const routes = createBrowserRouter([
     {
@@ -15,6 +16,14 @@ const routes = createBrowserRouter([
     {
         path: '/profile',
         element: <Profile />
+    },
+    {
+        path: '/edit',
+        element: <CreateEdit mode='edit'/>
+    },
+    {
+        path: '/create',
+        element: <CreateEdit mode='create'/>
     }
 ])
 

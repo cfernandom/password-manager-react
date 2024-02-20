@@ -13,3 +13,10 @@ h1{
     font-size: 0.8em;
     margin: 0;
 }
+.container-register{
+    display: flex;
+    flex-direction: column;
+    width: 280px;
+    align-items: center;
+    justify-content: center;
+}

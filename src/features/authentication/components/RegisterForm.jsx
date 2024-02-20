@@ -48,7 +48,7 @@ const RegisterForm = () => {
     }, [values.password])
 
     return (
-        <div className="app">
+        <div className="container-register">
             <form onSubmit={handleSubmit}>
                 <h1>Register</h1>
                 <FormInput
