@@ -1,9 +1,9 @@
 import './ButtonApp.css'
 import PropTypes from 'prop-types'
 
-function ButtonApp ({ text, styleBtn }) {
+function ButtonApp ({ text, styleBtn, functionality }) {
     return (
-        <button className={styleBtn ? 'main' : 'secondary'}>
+        <button className={styleBtn ? 'main' : 'secondary'} onClick={functionality}>
             { text }
         </button>
     )
@@ -11,7 +11,8 @@ function ButtonApp ({ text, styleBtn }) {
 
 ButtonApp.propTypes = {
     text: PropTypes.string,
-    styleBtn: PropTypes.bool
+    styleBtn: PropTypes.bool,
+    functionality: PropTypes.func
 }
 
 export default ButtonApp

@@ -1,5 +1,7 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import FormInput from '../../../components/FormInput'
+import ButtonApp from '../../../components/ButtonApp'
+import '../../../stylesheets/RegisterForm.css'
 
 const RegisterForm = () => {
     // const { auth } = useAuth()
@@ -8,38 +10,6 @@ const RegisterForm = () => {
         password: '',
         passwordConfirmation: ''
     })
-    const inputs = [
-        {
-            id: 1,
-            name: 'email',
-            type: 'email',
-            placeholder: 'example@mail.com',
-            errorMessage: 'It should be a valid email address!',
-            label: 'Email',
-            required: true
-        },
-        {
-            id: 2,
-            name: 'password',
-            type: 'password',
-            placeholder: 'Password',
-            errorMessage:
-                'Password should be 8-20 characters and include at least 1 letter, 1 number and 1 special character!',
-            label: 'Password',
-            pattern: '^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$',
-            required: true
-        },
-        {
-            id: 5,
-            name: 'passwordConfirmation',
-            type: 'password',
-            placeholder: 'Confirm Password',
-            errorMessage: 'Passwords don\'t match!',
-            label: 'Confirm Password',
-            pattern: values.password,
-            required: true
-        }
-    ]
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -48,20 +18,86 @@ const RegisterForm = () => {
         setValues({ ...values, [e.target.name]: e.target.value })
     }
 
+    const [showPass, setShowPass] = useState(false)
+
+    const toggleShowPass = () => {
+        setShowPass(!showPass)
+    }
+
+    const generatePassword = () => {
+        const length = 8
+        const charset = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+'
+        let password = ''
+        for (let i = 0; i < length; ++i) {
+            password += charset.charAt(Math.floor(Math.random() * charset.length))
+        }
+        return password
+    }
+
+    const handleGeneratePassword = () => {
+        const generatedPassword = generatePassword()
+        console.log(generatePassword)
+        setValues({ ...values, password: generatedPassword })
+    }
+
+    useEffect(() => {
+        const passwordInput = document.querySelector('.password-register input')
+        if (passwordInput) {
+            passwordInput.value = values.password
+        }
+    }, [values.password])
+
     return (
         <div className="app">
             <form onSubmit={handleSubmit}>
                 <h1>Register</h1>
-                {inputs.map((input) => (
+                <FormInput
+                    className = 'email-register'
+                    showPassword = {false}
+                    name = 'email'
+                    type = 'email'
+                    placeholder = 'example@mail.com'
+                    label = 'Email'
+                    errorMessage = 'It should be a valid email address!'
+                    required = { true }
+                    onChange={onChange}
+                />
+                <FormInput
+                    className = 'password-register'
+                    showPassword = {false}
+                    name = 'password'
+                    type = { showPass ? 'text' : 'password' }
+                    label = 'Master Password'
+                    pattern = '/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*\W)(?!.* ).{8,16}$/'
+                    errorMessage = 'It should contains a number, uppercase, lowercase, symbol with 8 min length'
+                    required = { true }
+                    onChange={onChange}
+                />
+                <div className='register-button-box'>
                     <FormInput
-                        key={input.id}
-                        {...input}
-                        value={values[input.name]}
-                        onChange={onChange}
+                        className = 'password-checkbox'
+                        showPassword = {true}
+                        name = 'password'
+                        type = 'checkbox'
+                        label = 'Show Password'
+                        required = { false }
+                        onChange={() => { toggleShowPass() }}
                     />
-                ))}
-                <button>Submit</button>
+                    <ButtonApp text='Generate Password' styleBtn={false}/>
+                </div>
+                <FormInput
+                    className = 'password-register-confirm'
+                    showPassword = {false}
+                    name = 'password'
+                    type = { showPass ? 'text' : 'password' }
+                    label = 'Confirm Master Password'
+                    pattern = '(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$'
+                    required = { true }
+                    onChange={onChange}
+                />
+                <ButtonApp text='Sign Up' styleBtn={true} functionality={handleGeneratePassword}/>
             </form>
+            <ButtonApp text='Go Back' styleBtn={false}/>
         </div>
     )
 }

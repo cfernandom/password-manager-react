@@ -9,6 +9,8 @@ input{
     margin: 10px 0px;
     border-radius: 5px;
     border: 1px solid #FFE86F;
+    background-color: #12161b;
+    color: #FFE86F;
 }
 
 .formInput label{

@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 import { useState } from 'react'
-import './formInput.css'
+import '../stylesheets/LoginForm.css'
 
 const FormInput = (props) => {
     const [focused, setFocused] = useState(false)
