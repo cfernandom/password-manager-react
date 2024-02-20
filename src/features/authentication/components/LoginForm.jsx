@@ -1,24 +1,39 @@
-import FormInput from '../../../components/FormInput'
-import '../../../stylesheets/LoginForm.css'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import ButtonApp from '../../../components/ButtonApp'
+import FormInput from '../../../components/FormInput'
+import useAuth from '../hooks/useAuth'
+import '../../../stylesheets/LoginForm.css'
 
 function LoginForm () {
+    const auth = useAuth()
+    const goTo = useNavigate()
+
     const [values, setValues] = useState({
         email: '',
         password: ''
     })
-    const handleSubmit = (e) => {
+
+    const handleSubmit = async (e) => {
         e.preventDefault()
+        await auth.login(values.email, values.password)
     }
+
     const onChange = (e) => {
         setValues({ ...values, [e.target.name]: e.target.value })
     }
+
     const [showPass, setShowPass] = useState(false)
 
     const toggleShowPass = () => {
         setShowPass(!showPass)
     }
+
+    useEffect(() => {
+        if (auth.isLoggedIn) {
+            goTo('/profile')
+        }
+    }, [auth.isLoggedIn])
 
     return (
         <div className="app-login">
