@@ -68,7 +68,7 @@ const RegisterForm = () => {
                     name = 'password'
                     type = { showPass ? 'text' : 'password' }
                     label = 'Master Password'
-                    pattern = '/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*\W)(?!.* ).{8,16}$/'
+                    pattern = '^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$'
                     errorMessage = 'It should contains a number, uppercase, lowercase, symbol with 8 min length'
                     required = { true }
                     onChange={onChange}
@@ -91,7 +91,8 @@ const RegisterForm = () => {
                     name = 'password'
                     type = { showPass ? 'text' : 'password' }
                     label = 'Confirm Master Password'
-                    pattern = '(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$'
+                    pattern = {`^${values.password}$`}
+                    errorMessage = 'It should be the same as the master password!'
                     required = { true }
                     onChange={onChange}
                 />
