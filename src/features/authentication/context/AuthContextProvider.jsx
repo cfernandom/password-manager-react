@@ -10,6 +10,7 @@ export const AuthProvider = ({ children }) => {
     const [authToken, setAuthToken] = useState(null)
     const [user, setUser] = useState(null)
     const [isLoggedIn, setIsLoggedIn] = useState(false)
+    const [error, setError] = useState(null)
 
     useEffect(() => {
         checkAuth()
@@ -113,6 +114,7 @@ export const AuthProvider = ({ children }) => {
             setSession(accessToken, user)
         } catch (error) {
             console.error('Login error: ', error.message)
+            setError(error.message)
             resetSession()
             throw error
         }
@@ -134,7 +136,8 @@ export const AuthProvider = ({ children }) => {
         authToken,
         user,
         isLoggedIn,
-        login
+        login,
+        error
     }
 
     return (
