@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import FormInput from '../../../components/FormInput'
 import ButtonApp from '../../../components/ButtonApp'
 import '../../../stylesheets/RegisterForm.css'
@@ -10,15 +10,21 @@ const RegisterForm = () => {
         password: '',
         passwordConfirmation: ''
     })
+    const [showPass, setShowPass] = useState(false)
 
     const handleSubmit = (e) => {
+        const form = document.querySelector('form')
         e.preventDefault()
+        if (!form.checkValidity()) {
+            form.reportValidity()
+            return
+        }
+        console.log('Registering...')
     }
+
     const onChange = (e) => {
         setValues({ ...values, [e.target.name]: e.target.value })
     }
-
-    const [showPass, setShowPass] = useState(false)
 
     const toggleShowPass = () => {
         setShowPass(!showPass)
@@ -36,16 +42,8 @@ const RegisterForm = () => {
 
     const handleGeneratePassword = () => {
         const generatedPassword = generatePassword()
-        console.log(generatePassword)
         setValues({ ...values, password: generatedPassword })
     }
-
-    useEffect(() => {
-        const passwordInput = document.querySelector('.password-register input')
-        if (passwordInput) {
-            passwordInput.value = values.password
-        }
-    }, [values.password])
 
     return (
         <div className="container-register">
@@ -72,6 +70,7 @@ const RegisterForm = () => {
                     errorMessage = 'It should contains a number, uppercase, lowercase, symbol with 8 min length'
                     required = { true }
                     onChange={onChange}
+                    value={values.password}
                 />
                 <div className='register-button-box'>
                     <FormInput
@@ -83,20 +82,20 @@ const RegisterForm = () => {
                         required = { false }
                         onChange={() => { toggleShowPass() }}
                     />
-                    <ButtonApp text='Generate Password' styleBtn={false}/>
+                    <ButtonApp text='Generate Password' styleBtn={false} functionality={handleGeneratePassword} />
                 </div>
                 <FormInput
                     className = 'password-register-confirm'
                     showPassword = {false}
-                    name = 'password'
+                    name = 'confirmPassword'
                     type = { showPass ? 'text' : 'password' }
                     label = 'Confirm Master Password'
-                    pattern = {`^${values.password}$`}
+                    pattern = {values.password}
                     errorMessage = 'It should be the same as the master password!'
                     required = { true }
                     onChange={onChange}
                 />
-                <ButtonApp text='Sign Up' styleBtn={true} functionality={handleGeneratePassword}/>
+                <ButtonApp text='Sign Up' styleBtn={true} functionality={handleSubmit} />
             </form>
             <ButtonApp text='Go Back' styleBtn={false}/>
         </div>
