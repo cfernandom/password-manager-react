@@ -1,8 +1,18 @@
 .profile-container{
+    align-items: center;
+    justify-content: center;
     display: flex;
     flex-direction: column;
+}
+
+.profile-btn-box{
+    display: flex;
+    flex-direction: row;
+    margin-top: 20px;
+    justify-content: space-between;
     width: 280px;
 }
-.profile-btn-box{
-    margin-top: 20px;
+.profile-btn-box button{
+    width: 45%;
+    font-size: 0.8em;
 }

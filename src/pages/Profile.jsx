@@ -14,43 +14,45 @@ export function Profile () {
     }
 
     return (
-        <div className='profile-container'>
-            <h1>PASSNAGER</h1>
-            <FormInput
-                className = 'profile-search'
-                showPassword = {false}
-                name = 'search'
-                type = 'text'
-                label = 'Search'
-                required = { false }
-                onChange={onChange}
-            />
-            <PasswordInfo
-                passwordTitle='Facebook'
-                password='HOLAMUNDO'
-            />
-            <PasswordInfo
-                passwordTitle='Facebook'
-                password='HOLAMUNDO'
-            />
-            <PasswordInfo
-                passwordTitle='Facebook'
-                password='HOLAMUNDO'
-            />
-            <PasswordInfo
-                passwordTitle='Facebook'
-                password='HOLAMUNDO'
-            />
-            <div className='profile-btn-box'>
-                <ButtonApp
-                    className='new-pass-btn'
-                    text='New Password'
-                    styleBtn={true}
+        <div className='profile-main-container'>
+            <div className='profile-container'>
+                <h1>PASSNAGER</h1>
+                <FormInput
+                    className = 'profile-search'
+                    showPassword = {false}
+                    name = 'search'
+                    type = 'text'
+                    label = 'Search'
+                    required = { false }
+                    onChange={onChange}
                 />
-                <ButtonApp
-                    text='Logout'
-                    styleBtn={false}
+                <PasswordInfo
+                    passwordTitle='Facebook'
+                    password='HOLAMUNDO'
                 />
+                <PasswordInfo
+                    passwordTitle='Facebook'
+                    password='HOLAMUNDO'
+                />
+                <PasswordInfo
+                    passwordTitle='Facebook'
+                    password='HOLAMUNDO'
+                />
+                <PasswordInfo
+                    passwordTitle='Facebook'
+                    password='HOLAMUNDO'
+                />
+                <div className='profile-btn-box'>
+                    <ButtonApp
+                        className='new-pass-btn'
+                        text='New Password'
+                        styleBtn={true}
+                    />
+                    <ButtonApp
+                        text='Logout'
+                        styleBtn={false}
+                    />
+                </div>
             </div>
         </div>
     )

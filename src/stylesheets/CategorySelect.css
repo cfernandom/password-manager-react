@@ -7,3 +7,8 @@
     width: 60%;
     border-width: 1px;
 }
+.category-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

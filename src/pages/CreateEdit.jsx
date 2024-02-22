@@ -28,6 +28,21 @@ export default function CreateEdit ({ mode }) {
         e.preventDefault()
     }
 
+    const generatePassword = () => {
+        const length = 8
+        const charset = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+'
+        let password = ''
+        for (let i = 0; i < length; ++i) {
+            password += charset.charAt(Math.floor(Math.random() * charset.length))
+        }
+        return password
+    }
+
+    const handleGeneratePassword = () => {
+        const generatedPassword = generatePassword()
+        setValues({ ...values, password: generatedPassword })
+    }
+
     return (
         <div className='container-create-edit'>
             <h1>PASSNAGER</h1>
@@ -65,6 +80,7 @@ export default function CreateEdit ({ mode }) {
                     label = 'Password'
                     required = { true }
                     onChange={() => { toggleShowPass() }}
+                    value={values.password}
                 />
                 <div className='button-box-create-edit'>
                     <FormInput
@@ -76,7 +92,7 @@ export default function CreateEdit ({ mode }) {
                         required = { false }
                         onChange={() => { toggleShowPass() }}
                     />
-                    <ButtonApp text='Generate Password' styleBtn={false}/>
+                    <ButtonApp text='Generate Password' styleBtn={false} functionality={handleGeneratePassword}/>
                 </div>
                 <FormInput
                     className = 'password-confirm-edit-create'
