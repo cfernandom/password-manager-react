@@ -2,9 +2,13 @@ import { useState } from 'react'
 import FormInput from '../../../components/FormInput'
 import ButtonApp from '../../../components/ButtonApp'
 import '../../../stylesheets/RegisterForm.css'
+import useAuth from '../hooks/useAuth'
+import { useNavigate } from 'react-router-dom'
 
 const RegisterForm = () => {
-    // const { auth } = useAuth()
+    const auth = useAuth()
+    const goTo = useNavigate()
+
     const [values, setValues] = useState({
         email: '',
         password: '',
@@ -12,7 +16,7 @@ const RegisterForm = () => {
     })
     const [showPass, setShowPass] = useState(false)
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         const form = document.querySelector('form')
         e.preventDefault()
         if (!form.checkValidity()) {
@@ -20,6 +24,19 @@ const RegisterForm = () => {
             return
         }
         console.log('Registering...')
+
+        const successfulRegistration = await auth.register(
+            values.email,
+            values.password,
+            values.passwordConfirmation
+        )
+
+        if (successfulRegistration) {
+            alert('Registration successful!')
+            goTo('/')
+            return
+        }
+        alert('Registration failed!')
     }
 
     const onChange = (e) => {
@@ -87,7 +104,7 @@ const RegisterForm = () => {
                 <FormInput
                     className = 'password-register-confirm'
                     showPassword = {false}
-                    name = 'confirmPassword'
+                    name = 'passwordConfirmation'
                     type = { showPass ? 'text' : 'password' }
                     label = 'Confirm Master Password'
                     pattern = {values.password}
@@ -97,6 +114,7 @@ const RegisterForm = () => {
                 />
                 <ButtonApp text='Sign Up' styleBtn={true} functionality={handleSubmit} type='submit'/>
             </form>
+            {auth.error && <div className='error-message'>{auth.error}</div>}
             <ButtonApp text='Go Back' styleBtn={false}/>
         </div>
     )
