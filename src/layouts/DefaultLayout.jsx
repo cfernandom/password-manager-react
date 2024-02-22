@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import './src/stylesheets/styles.css'
+import '../stylesheets/styles.css'
 
 const DefaultLayout = ({ children }) => {
     return (
