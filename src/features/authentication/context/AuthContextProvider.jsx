@@ -165,13 +165,18 @@ export const AuthProvider = ({ children }) => {
         setIsLoggedIn(false)
     }
 
+    const resetError = () => {
+        setError(null)
+    }
+
     const authValues = {
         authToken,
         user,
         isLoggedIn,
         login,
         register,
-        error
+        error,
+        resetError
     }
 
     return (

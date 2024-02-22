@@ -32,6 +32,7 @@ const RegisterForm = () => {
         )
 
         if (successfulRegistration) {
+            auth.resetError()
             alert('Registration successful!')
             goTo('/')
             return
