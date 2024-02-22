@@ -95,7 +95,7 @@ const RegisterForm = () => {
                     required = { true }
                     onChange={onChange}
                 />
-                <ButtonApp text='Sign Up' styleBtn={true} functionality={handleSubmit} />
+                <ButtonApp text='Sign Up' styleBtn={true} functionality={handleSubmit} type='submit'/>
             </form>
             <ButtonApp text='Go Back' styleBtn={false}/>
         </div>
