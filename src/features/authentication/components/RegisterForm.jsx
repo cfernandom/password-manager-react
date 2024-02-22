@@ -64,7 +64,7 @@ const RegisterForm = () => {
     }
 
     return (
-        <div className="container-register">
+        <>
             <form onSubmit={handleSubmit}>
                 <h1>Register</h1>
                 <FormInput
@@ -117,7 +117,7 @@ const RegisterForm = () => {
             </form>
             {auth.error && <div className='error-message'>{auth.error}</div>}
             <ButtonApp text='Go Back' styleBtn={false}/>
-        </div>
+        </>
     )
 }
 

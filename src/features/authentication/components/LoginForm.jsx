@@ -4,7 +4,6 @@ import ButtonApp from '../../../components/ButtonApp'
 import FormInput from '../../../components/FormInput'
 import useAuth from '../hooks/useAuth'
 import '../../../stylesheets/LoginForm.css'
-import '../../../stylesheets/styles.css'
 
 function LoginForm () {
     const auth = useAuth()
@@ -37,7 +36,7 @@ function LoginForm () {
     }, [auth.isLoggedIn])
 
     return (
-        <div className="app-login">
+        <>
             <form onSubmit={handleSubmit}>
                 <FormInput
                     className = 'email-login'
@@ -76,7 +75,7 @@ function LoginForm () {
                 <ButtonApp className='login-btn' text='Login' styleBtn={true} functionality={handleSubmit}/>
             </form>
             {auth.error && <div className='error-message'>{auth.error}</div>}
-        </div>
+        </>
     )
 }
 
