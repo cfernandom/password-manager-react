@@ -73,7 +73,7 @@ function LoginForm () {
                         Forgot Password?
                     </Link>
                 </div>
-                <ButtonApp className='login-btn' text='Login' styleBtn={true}/>
+                <ButtonApp className='login-btn' text='Login' styleBtn={true} functionality={handleSubmit}/>
             </form>
             {auth.error && <div className='error-message'>{auth.error}</div>}
         </div>
