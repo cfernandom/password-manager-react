@@ -120,6 +120,39 @@ export const AuthProvider = ({ children }) => {
         }
     }
 
+    const register = async (email, password, passwordConfirmation) => {
+        try {
+            const response = await fetch(
+                `${authApiEndpoint}/register`,
+                {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        email,
+                        password,
+                        password_confirmation: passwordConfirmation
+                    })
+                }
+            )
+
+            const json = await response.json()
+
+            if (!response.ok) {
+                const errorMessage = formatErrorMessages(json.message)
+                throw new Error(errorMessage)
+            }
+
+            return true
+        } catch (error) {
+            console.error('Register error: ', error.message)
+            setError(error.message)
+            resetSession()
+            throw error
+        }
+    }
+
     const setSession = (accessToken, user) => {
         setAuthToken(accessToken)
         setUser(user)
@@ -137,6 +170,7 @@ export const AuthProvider = ({ children }) => {
         user,
         isLoggedIn,
         login,
+        register,
         error
     }
 
