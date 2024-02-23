@@ -1,9 +1,8 @@
 import { useState } from 'react'
 import FormInput from '../../../components/FormInput'
 import ButtonApp from '../../../components/ButtonApp'
-import '../../../stylesheets/RegisterForm.css'
 import useAuth from '../hooks/useAuth'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 const RegisterForm = () => {
     const auth = useAuth()
@@ -67,56 +66,64 @@ const RegisterForm = () => {
         <>
             <form onSubmit={handleSubmit}>
                 <h1>Register</h1>
-                <FormInput
-                    className = 'email-register'
-                    showPassword = {false}
-                    name = 'email'
-                    type = 'email'
-                    placeholder = 'example@mail.com'
-                    label = 'Email'
-                    errorMessage = 'It should be a valid email address!'
-                    required = { true }
-                    onChange={onChange}
-                />
-                <FormInput
-                    className = 'password-register'
-                    showPassword = {false}
-                    name = 'password'
-                    type = { showPass ? 'text' : 'password' }
-                    label = 'Master Password'
-                    pattern = '^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$'
-                    errorMessage = 'It should contains a number, uppercase, lowercase, symbol with 8 min length'
-                    required = { true }
-                    onChange={onChange}
-                    value={values.password}
-                />
-                <div className='register-button-box'>
+                <div className='form__body'>
                     <FormInput
-                        className = 'password-checkbox'
-                        showPassword = {true}
-                        name = 'password'
-                        type = 'checkbox'
-                        label = 'Show Password'
-                        required = { false }
-                        onChange={() => { toggleShowPass() }}
+                        name = 'email'
+                        type = 'email'
+                        placeholder = 'example@mail.com'
+                        label = 'Email'
+                        errorMessage = 'It should be a valid email address!'
+                        required = { true }
+                        onChange={onChange}
                     />
-                    <ButtonApp text='Generate Password' styleBtn={false} functionality={handleGeneratePassword} />
+                    <FormInput
+                        name = 'password'
+                        type = { showPass ? 'text' : 'password' }
+                        label = 'Master Password'
+                        pattern = '^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$'
+                        errorMessage = 'It should contains a number, uppercase, lowercase, symbol with 8 min length'
+                        required = { true }
+                        onChange={onChange}
+                        placeholder = '8-20 characters'
+                        value={values.password}
+                    />
+                    <div className='form__password-options'>
+                        <FormInput
+                            name = 'checkbox'
+                            type = 'checkbox'
+                            label = 'Show Password'
+                            required = { false }
+                            onChange={() => { toggleShowPass() }}
+                        />
+                        <ButtonApp
+                            text='Generate Password'
+                            functionality={handleGeneratePassword}
+                            className='button--secondary'
+                        />
+                    </div>
+                    <FormInput
+                        name = 'passwordConfirmation'
+                        type = { showPass ? 'text' : 'password' }
+                        label = 'Confirm Master Password'
+                        pattern = {values.password}
+                        errorMessage = 'It should be the same as the master password!'
+                        required = { true }
+                        onChange={onChange}
+                    />
                 </div>
-                <FormInput
-                    className = 'password-register-confirm'
-                    showPassword = {false}
-                    name = 'passwordConfirmation'
-                    type = { showPass ? 'text' : 'password' }
-                    label = 'Confirm Master Password'
-                    pattern = {values.password}
-                    errorMessage = 'It should be the same as the master password!'
-                    required = { true }
-                    onChange={onChange}
-                />
-                <ButtonApp text='Sign Up' styleBtn={true} functionality={handleSubmit} type='submit'/>
+                <div className='form__action-buttons'>
+                    <ButtonApp
+                        text='Sign Up'
+                        functionality={handleSubmit}
+                        type='submit'
+                        className='button--primary'
+                    />
+                    <p>Already have an account?
+                        <Link to='/'> Sign in</Link>
+                    </p>
+                </div>
             </form>
             {auth.error && <div className='error-message'>{auth.error}</div>}
-            <ButtonApp text='Go Back' styleBtn={false}/>
         </>
     )
 }

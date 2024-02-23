@@ -1,20 +1,24 @@
 import PropTypes from 'prop-types'
 import { useState } from 'react'
-import '../stylesheets/LoginForm.css'
+import './FormInput.css'
 
 const FormInput = (props) => {
     const [focused, setFocused] = useState(false)
-    const { label, showPassword, errorMessage, onChange, id, ...inputProps } = props
+    const { label, errorMessage, onChange, id, type, ...inputProps } = props
 
     const handleFocus = (e) => {
         setFocused(true)
     }
 
+    const containerClassName = type === 'checkbox' ? 'formInput__container--inline' : 'formInput__container'
+    const inputClassName = type === 'checkbox' ? 'formInput__input--checkbox' : 'formInput__input'
+
     return (
-        <div className = {showPassword ? 'show-password' : 'formInput'}>
-            <label>{label}</label>
-            <input
+        <div className = {containerClassName}>
+            <label className='formInput__label'>{label}</label>
+            <input className={inputClassName}
                 {...inputProps}
+                type= {type}
                 onChange={onChange}
                 onBlur={handleFocus}
                 onFocus={() =>
@@ -22,7 +26,7 @@ const FormInput = (props) => {
                 }
                 focused={focused.toString()}
             />
-            <span>{errorMessage}</span>
+            <span className='formInput__text--error'>{errorMessage}</span>
         </div>
     )
 }
@@ -32,7 +36,7 @@ FormInput.propTypes = {
     errorMessage: PropTypes.string,
     onChange: PropTypes.func,
     id: PropTypes.number,
-    showPassword: PropTypes.bool
+    type: PropTypes.string
 }
 
 export default FormInput

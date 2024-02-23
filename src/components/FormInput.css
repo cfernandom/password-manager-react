@@ -1,0 +1,59 @@
+.formInput__text--error{
+    font-size: 12px;
+    padding: 3px;
+    color: red;
+    display: none;
+}
+
+.formInput__container--inline{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+}
+
+.formInput__container {
+    margin-top: 10px;
+}
+
+.formInput__input--checkbox{
+    /* appearance: none; */
+    display: block;
+    width: 20px; /* Ancho deseado del checkbox */
+    height: 20px; /* Altura deseada del checkbox */
+    appearance: none;
+    background-color: #12161b;
+    border: 1px solid #FFE86F;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.formInput__input--checkbox:checked{
+    background-color: #FFE86F;
+}   
+
+.formInput__input:invalid[focused="true"]{
+    border: 1px solid red;
+}
+
+.formInput__input:invalid[focused="true"] ~ span{
+    display: block;
+}
+
+.formInput__input{
+    padding: 7px;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: 1px solid #FFE86F;
+    background-color: #12161b;
+    color: #FFE86F;
+    width: 100%;
+    display: block;
+}
+
+.formInput__label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #FFE86F;
+}
+

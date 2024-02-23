@@ -3,7 +3,6 @@ import { Link, useNavigate } from 'react-router-dom'
 import ButtonApp from '../../../components/ButtonApp'
 import FormInput from '../../../components/FormInput'
 import useAuth from '../hooks/useAuth'
-import '../../../stylesheets/LoginForm.css'
 
 function LoginForm () {
     const auth = useAuth()
@@ -39,18 +38,15 @@ function LoginForm () {
         <>
             <form onSubmit={handleSubmit}>
                 <FormInput
-                    className = 'email-login'
                     showPassword = {false}
                     name = 'email'
                     type = 'email'
-                    placeholder = 'example@mail.com'
                     label = 'Email'
                     errorMessage = 'It should be a valid email address!'
                     required = { true }
                     onChange={onChange}
                 />
                 <FormInput
-                    className = 'password-login'
                     showPassword = {false}
                     name = 'password'
                     type = { showPass ? 'text' : 'password' }
@@ -58,9 +54,8 @@ function LoginForm () {
                     required = { false }
                     onChange={onChange}
                 />
-                <div className='secondary-container'>
+                <div className='form__password-options'>
                     <FormInput
-                        className = 'password-checkbox'
                         showPassword = {true}
                         name = 'password'
                         type = 'checkbox'
@@ -72,7 +67,16 @@ function LoginForm () {
                         Forgot Password?
                     </Link>
                 </div>
-                <ButtonApp className='login-btn' text='Login' styleBtn={true} functionality={handleSubmit}/>
+                <div className='form__action-buttons'>
+                    <ButtonApp
+                        text='Login'
+                        functionality={handleSubmit}
+                        className='button--primary'
+                    />
+                    <p>Don&lsquo;t have an account?
+                        <Link to='/register'> Sign up</Link>
+                    </p>
+                </div>
             </form>
             {auth.error && <div className='error-message'>{auth.error}</div>}
         </>
