@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 
 function ButtonApp (props) {
     const { text, functionality, type, ...inputProps } = props
-    console.log(inputProps)
     return (
         <button
             {...inputProps}
