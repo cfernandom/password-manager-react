@@ -1,6 +1,7 @@
 import { createContext, useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import { formatErrorMessages } from '../../../utils/apiResponse'
+import CircularProgress from '../../../components/CircularLoader'
 
 const authApiEndpoint = import.meta.env.VITE_APP_AUTH_API_ENDPOINT
 
@@ -11,12 +12,15 @@ export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null)
     const [isLoggedIn, setIsLoggedIn] = useState(false)
     const [error, setError] = useState(null)
+    const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
         checkAuth()
     }, [])
 
     const checkAuth = async () => {
+        setIsLoading(true)
+
         try {
             const accessToken = authToken || await requestAccessToken()
 
@@ -88,6 +92,8 @@ export const AuthProvider = ({ children }) => {
     }
 
     const login = async (email, password) => {
+        setIsLoading(true)
+
         try {
             const response = await fetch(
                 `${authApiEndpoint}/login`,
@@ -121,6 +127,8 @@ export const AuthProvider = ({ children }) => {
     }
 
     const register = async (email, password, passwordConfirmation) => {
+        setIsLoading(true)
+
         try {
             const response = await fetch(
                 `${authApiEndpoint}/register`,
@@ -144,6 +152,7 @@ export const AuthProvider = ({ children }) => {
                 throw new Error(errorMessage)
             }
 
+            setIsLoading(false)
             return true
         } catch (error) {
             console.error('Register error: ', error.message)
@@ -157,12 +166,14 @@ export const AuthProvider = ({ children }) => {
         setAuthToken(accessToken)
         setUser(user)
         setIsLoggedIn(true)
+        setIsLoading(false)
     }
 
     const resetSession = () => {
         setAuthToken(null)
         setUser(null)
         setIsLoggedIn(false)
+        setIsLoading(false)
     }
 
     const resetError = () => {
@@ -181,7 +192,7 @@ export const AuthProvider = ({ children }) => {
 
     return (
         <AuthContext.Provider value={authValues}>
-            {children}
+            {isLoading ? (<CircularProgress />) : children}
         </AuthContext.Provider>
     )
 }
