@@ -2,7 +2,7 @@ import { useState } from 'react'
 import FormInput from '../../../components/FormInput'
 import ButtonApp from '../../../components/ButtonApp'
 import useAuth from '../hooks/useAuth'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, Navigate } from 'react-router-dom'
 
 const RegisterForm = () => {
     const auth = useAuth()
@@ -60,6 +60,10 @@ const RegisterForm = () => {
     const handleGeneratePassword = () => {
         const generatedPassword = generatePassword()
         setValues({ ...values, password: generatedPassword })
+    }
+
+    if (auth.isLoggedIn) {
+        return <Navigate to="/profile" />
     }
 
     return (
