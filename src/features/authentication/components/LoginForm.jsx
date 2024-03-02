@@ -1,12 +1,11 @@
-import { useEffect, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { useState } from 'react'
+import { Link, Navigate } from 'react-router-dom'
 import ButtonApp from '../../../components/ButtonApp'
 import FormInput from '../../../components/FormInput'
 import useAuth from '../hooks/useAuth'
 
 function LoginForm () {
     const auth = useAuth()
-    const goTo = useNavigate()
 
     const [values, setValues] = useState({
         email: '',
@@ -28,11 +27,9 @@ function LoginForm () {
         setShowPass(!showPass)
     }
 
-    useEffect(() => {
-        if (auth.isLoggedIn) {
-            goTo('/profile')
-        }
-    }, [auth.isLoggedIn])
+    if (auth.isLoggedIn) {
+        return <Navigate to="/profile" />
+    }
 
     return (
         <>
