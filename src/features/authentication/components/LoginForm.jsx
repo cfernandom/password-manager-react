@@ -38,7 +38,6 @@ function LoginForm () {
         <>
             <form onSubmit={handleSubmit}>
                 <FormInput
-                    showPassword = {false}
                     name = 'email'
                     type = 'email'
                     label = 'Email'
@@ -47,7 +46,6 @@ function LoginForm () {
                     onChange={onChange}
                 />
                 <FormInput
-                    showPassword = {false}
                     name = 'password'
                     type = { showPass ? 'text' : 'password' }
                     label = 'Master Password'
@@ -56,7 +54,6 @@ function LoginForm () {
                 />
                 <div className='form__password-options'>
                     <FormInput
-                        showPassword = {true}
                         name = 'password'
                         type = 'checkbox'
                         label = 'Show Password'
